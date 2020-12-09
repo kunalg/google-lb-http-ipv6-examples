@@ -9,8 +9,8 @@ Idea is to exactly test the changes as requested in [this issue comment](https:/
 
 There are 2 cases to be verified for IPv6 address changes - as outlined in the discussion thread:
 
-1. new automatically allocated IPv6 address (folder: [new_ipv6](new_ipv6/))
-2. pre-created IPv6 address (either EIP in GCP or bring-your-own-address) (folder: [precreated_ipv6](precreated_ipv6/))
+1. new automatically allocated IPv6 address (folder: [new_ipv6](new_ipv6/https-redirect))
+2. pre-created IPv6 address (either EIP in GCP or bring-your-own-address) (folder: [precreated_ipv6](precreated_ipv6/https-redirect))
 
 I have also included exact changes I made to the `https-redirect` example in the corresponding `.diff` files.
 
