@@ -15,3 +15,19 @@ There are 2 cases to be verified for IPv6 address changes - as outlined in the d
 I have also included exact changes I made to the `https-redirect` example in the corresponding `.diff` files.
 
 The output from `terraform` commands is included in some `.txt` files in the respective example directories.
+
+## How to run
+
+To run the examples, change into the corresponding directory, edit the values in `test.tfvars` file (mainly, project id, region, zone and network_name) and run following commands:
+
+```bash
+$ terraform init
+$ terraform plan -var-file=test.tfvars # to see the changes before applying them
+$ terraform apply -var-file=test.tfvars # to finally apply the changes.
+```
+
+To destroy the infra created, run:
+
+```bash
+$ terraform destroy -var-file=test.tfvars
+```
