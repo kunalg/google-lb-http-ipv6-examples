@@ -1,0 +1,674 @@
+module.cloud-nat.random_string.name_suffix: Refreshing state... [id=4ggyvi]
+data.template_file.group-startup-script: Refreshing state...
+module.gce-lb-http.google_compute_global_address.default[0]: Refreshing state... [id=projects/frontier-268910/global/addresses/ci-https-redirect-address]
+module.mig.data.google_compute_zones.available: Refreshing state...
+module.mig_template.data.google_compute_image.image: Refreshing state...
+module.mig_template.data.google_compute_image.image_family: Refreshing state...
+tls_private_key.example: Refreshing state... [id=8e7b482feb77f05c8ca8fca6fac71c8ea2636efa]
+module.gce-lb-http.google_compute_global_address.default_ipv6[0]: Refreshing state... [id=projects/frontier-268910/global/addresses/ci-https-redirect-ipv6-address]
+tls_self_signed_cert.example: Refreshing state... [id=38137366328747142745847579692771248227]
+google_compute_router.default: Refreshing state... [id=projects/frontier-268910/regions/asia-south1/routers/lb-https-redirect-router]
+google_compute_ssl_certificate.example: Refreshing state... [id=projects/frontier-268910/global/sslCertificates/default-cert]
+module.gce-lb-http.google_compute_url_map.https_redirect[0]: Refreshing state... [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-https-redirect]
+module.cloud-nat.google_compute_router_nat.main: Refreshing state... [id=frontier-268910/asia-south1/lb-https-redirect-router/cloud-nat-lb-https-redirect]
+module.mig_template.google_compute_instance_template.tpl: Refreshing state... [id=projects/frontier-268910/global/instanceTemplates/default-20201209163956526200000001]
+module.mig.google_compute_region_instance_group_manager.mig: Refreshing state... [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig]
+module.gce-lb-http.google_compute_firewall.default-hc[0]: Refreshing state... [id=projects/frontier-268910/global/firewalls/ci-https-redirect-hc-0]
+module.gce-lb-http.google_compute_health_check.default["default"]: Refreshing state... [id=projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default]
+module.gce-lb-http.google_compute_backend_service.default["default"]: Refreshing state... [id=projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default]
+module.gce-lb-http.google_compute_url_map.default[0]: Refreshing state... [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-url-map]
+module.gce-lb-http.google_compute_target_http_proxy.default[0]: Refreshing state... [id=projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy]
+module.gce-lb-http.google_compute_target_https_proxy.default[0]: Refreshing state... [id=projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy]
+module.gce-lb-http.google_compute_global_forwarding_rule.https[0]: Refreshing state... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-https]
+module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0]: Refreshing state... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-https]
+module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0]: Refreshing state... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-http]
+module.gce-lb-http.google_compute_global_forwarding_rule.http[0]: Refreshing state... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect]
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # google_compute_router.default will be destroyed
+  - resource "google_compute_router" "default" {
+      - creation_timestamp = "2020-12-09T08:39:44.480-08:00" -> null
+      - id                 = "projects/frontier-268910/regions/asia-south1/routers/lb-https-redirect-router" -> null
+      - name               = "lb-https-redirect-router" -> null
+      - network            = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/networks/default" -> null
+      - project            = "frontier-268910" -> null
+      - region             = "asia-south1" -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/regions/asia-south1/routers/lb-https-redirect-router" -> null
+    }
+
+  # google_compute_ssl_certificate.example will be destroyed
+  - resource "google_compute_ssl_certificate" "example" {
+      - certificate        = (sensitive value)
+      - certificate_id     = 2163091050225025800 -> null
+      - creation_timestamp = "2020-12-09T08:39:44.303-08:00" -> null
+      - id                 = "projects/frontier-268910/global/sslCertificates/default-cert" -> null
+      - name               = "default-cert" -> null
+      - private_key        = (sensitive value)
+      - project            = "frontier-268910" -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/sslCertificates/default-cert" -> null
+    }
+
+  # tls_private_key.example will be destroyed
+  - resource "tls_private_key" "example" {
+      - algorithm                  = "RSA" -> null
+      - ecdsa_curve                = "P224" -> null
+      - id                         = "8e7b482feb77f05c8ca8fca6fac71c8ea2636efa" -> null
+      - private_key_pem            = (sensitive value)
+      - public_key_fingerprint_md5 = "c0:7b:5b:d7:34:04:2b:3d:05:37:db:b4:ab:5d:e6:47" -> null
+      - public_key_openssh         = <<~EOT
+            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8491UFhtEiPNTWFxDdmfPS0LeRUUaJj26yIsqQxOgQuarljZai1gHd+4f/zXFMI7DUZE4c8MR8WabgOf/7yO2OeY92/jvm/HqtoLbRx4BCTtotj0gt3TC6JTkYWP/jsPDEiwZJjtoyLmxPuluoSoJ9gdH79YTxCBQIT1bEkRPmqdK69wbghz2Of9DXdB0rirozuAXIM05qvqGcxxPVbmwlbtkZjo3cMFRmpB1ols4fvzexdDYQl/yaIamHTIpA8xHO/iFhyuBQnanbDffceJtDw3OZppiRJGy1xREsby6KKONSUPx+cwYmqpaJOnyg0QzBFx6eBMJTMCK6DGcc9xJ
+        EOT -> null
+      - public_key_pem             = <<~EOT
+            -----BEGIN PUBLIC KEY-----
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvOPdVBYbRIjzU1hcQ3Zn
+            z0tC3kVFGiY9usiLKkMToELmq5Y2WotYB3fuH/81xTCOw1GROHPDEfFmm4Dn/+8j
+            tjnmPdv475vx6raC20ceAQk7aLY9ILd0wuiU5GFj/47DwxIsGSY7aMi5sT7pbqEq
+            CfYHR+/WE8QgUCE9WxJET5qnSuvcG4Ic9jn/Q13QdK4q6M7gFyDNOar6hnMcT1W5
+            sJW7ZGY6N3DBUZqQdaJbOH783sXQ2EJf8miGph0yKQPMRzv4hYcrgUJ2p2w333Hi
+            bQ8NzmaaYkSRstcURLG8uiijjUlD8fnMGJqqWiTp8oNEMwRcengTCUzAiugxnHPc
+            SQIDAQAB
+            -----END PUBLIC KEY-----
+        EOT -> null
+      - rsa_bits                   = 2048 -> null
+    }
+
+  # tls_self_signed_cert.example will be destroyed
+  - resource "tls_self_signed_cert" "example" {
+      - allowed_uses          = [
+          - "key_encipherment",
+          - "digital_signature",
+          - "server_auth",
+        ] -> null
+      - cert_pem              = <<~EOT
+            -----BEGIN CERTIFICATE-----
+            MIIDPTCCAiWgAwIBAgIQHLD9VTKMRhTkCQrglDsIYzANBgkqhkiG9w0BAQsFADAz
+            MRswGQYDVQQKExJBQ01FIEV4YW1wbGVzLCBJbmMxFDASBgNVBAMTC2V4YW1wbGUu
+            Y29tMB4XDTIwMTIwOTE2Mzk0MloXDTIwMTIxMDA0Mzk0MlowMzEbMBkGA1UEChMS
+            QUNNRSBFeGFtcGxlcywgSW5jMRQwEgYDVQQDEwtleGFtcGxlLmNvbTCCASIwDQYJ
+            KoZIhvcNAQEBBQADggEPADCCAQoCggEBALzj3VQWG0SI81NYXEN2Z89LQt5FRRom
+            PbrIiypDE6BC5quWNlqLWAd37h//NcUwjsNRkThzwxHxZpuA5//vI7Y55j3b+O+b
+            8eq2gttHHgEJO2i2PSC3dMLolORhY/+Ow8MSLBkmO2jIubE+6W6hKgn2B0fv1hPE
+            IFAhPVsSRE+ap0rr3BuCHPY5/0Nd0HSuKujO4BcgzTmq+oZzHE9VubCVu2RmOjdw
+            wVGakHWiWzh+/N7F0NhCX/JohqYdMikDzEc7+IWHK4FCdqdsN99x4m0PDc5mmmJE
+            kbLXFESxvLooo41JQ/H5zBiaqlok6fKDRDMEXHp4EwlMwIroMZxz3EkCAwEAAaNN
+            MEswDgYDVR0PAQH/BAQDAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB
+            /wQCMAAwFgYDVR0RBA8wDYILZXhhbXBsZS5jb20wDQYJKoZIhvcNAQELBQADggEB
+            AGnGVftsT0y+qpCaza0ooxBNkC4QPMoQycDNS4FKvttF+uet5Kd2mHk53rqFeYsx
+            ahfEMoBSW58iXgBuGiL+ejmHY66cCG0zl0hMx3/C9UcFhdnSZyULTUb9EA9MjMgt
+            t5nN3xsHZUcMCikaFhMBeBgd1Sp0YycbYYDB3nDeuLhqbwMbSFyZnogSxA8XfpZM
+            RTUJ5AXmHdjm+zVUuJ9E45GicZFv3AQA9XQzNMI5WTmyAIw1eMbrTTcIY3GqkHOy
+            o6ZcMDCNjh+axq/cOSIXdZcgevzjt/I5yYQ5357pqyDJYeSvwTfXtw5U3SgTkmxI
+            17YwgDXKdh6aB0bKx1SPGaQ=
+            -----END CERTIFICATE-----
+        EOT -> null
+      - dns_names             = [
+          - "example.com",
+        ] -> null
+      - early_renewal_hours   = 3 -> null
+      - id                    = "38137366328747142745847579692771248227" -> null
+      - key_algorithm         = "RSA" -> null
+      - private_key_pem       = (sensitive value)
+      - ready_for_renewal     = false -> null
+      - validity_end_time     = "2020-12-10T10:09:42.543552+05:30" -> null
+      - validity_period_hours = 12 -> null
+      - validity_start_time   = "2020-12-09T22:09:42.543552+05:30" -> null
+
+      - subject {
+          - common_name    = "example.com" -> null
+          - organization   = "ACME Examples, Inc" -> null
+          - street_address = [] -> null
+        }
+    }
+
+  # module.cloud-nat.google_compute_router_nat.main will be destroyed
+  - resource "google_compute_router_nat" "main" {
+      - drain_nat_ips                      = [] -> null
+      - icmp_idle_timeout_sec              = 30 -> null
+      - id                                 = "frontier-268910/asia-south1/lb-https-redirect-router/cloud-nat-lb-https-redirect" -> null
+      - min_ports_per_vm                   = 64 -> null
+      - name                               = "cloud-nat-lb-https-redirect" -> null
+      - nat_ip_allocate_option             = "AUTO_ONLY" -> null
+      - nat_ips                            = [] -> null
+      - project                            = "frontier-268910" -> null
+      - region                             = "asia-south1" -> null
+      - router                             = "lb-https-redirect-router" -> null
+      - source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES" -> null
+      - tcp_established_idle_timeout_sec   = 1200 -> null
+      - tcp_transitory_idle_timeout_sec    = 30 -> null
+      - udp_idle_timeout_sec               = 30 -> null
+    }
+
+  # module.cloud-nat.random_string.name_suffix will be destroyed
+  - resource "random_string" "name_suffix" {
+      - id          = "4ggyvi" -> null
+      - length      = 6 -> null
+      - lower       = true -> null
+      - min_lower   = 0 -> null
+      - min_numeric = 0 -> null
+      - min_special = 0 -> null
+      - min_upper   = 0 -> null
+      - number      = true -> null
+      - result      = "4ggyvi" -> null
+      - special     = false -> null
+      - upper       = false -> null
+    }
+
+  # module.gce-lb-http.google_compute_backend_service.default["default"] will be destroyed
+  - resource "google_compute_backend_service" "default" {
+      - affinity_cookie_ttl_sec         = 0 -> null
+      - connection_draining_timeout_sec = 300 -> null
+      - creation_timestamp              = "2020-12-09T08:40:27.499-08:00" -> null
+      - custom_request_headers          = [] -> null
+      - custom_response_headers         = [] -> null
+      - enable_cdn                      = false -> null
+      - fingerprint                     = "hFdtQ3OrdzI=" -> null
+      - health_checks                   = [
+          - "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default",
+        ] -> null
+      - id                              = "projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default" -> null
+      - load_balancing_scheme           = "EXTERNAL" -> null
+      - name                            = "ci-https-redirect-backend-default" -> null
+      - port_name                       = "http" -> null
+      - project                         = "frontier-268910" -> null
+      - protocol                        = "HTTP" -> null
+      - self_link                       = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default" -> null
+      - session_affinity                = "NONE" -> null
+      - timeout_sec                     = 10 -> null
+
+      - backend {
+          - balancing_mode               = "UTILIZATION" -> null
+          - capacity_scaler              = 1 -> null
+          - group                        = "https://www.googleapis.com/compute/v1/projects/frontier-268910/regions/asia-south1/instanceGroups/default-mig" -> null
+          - max_connections              = 0 -> null
+          - max_connections_per_endpoint = 0 -> null
+          - max_connections_per_instance = 0 -> null
+          - max_rate                     = 0 -> null
+          - max_rate_per_endpoint        = 0 -> null
+          - max_rate_per_instance        = 0 -> null
+          - max_utilization              = 0.8 -> null
+        }
+    }
+
+  # module.gce-lb-http.google_compute_firewall.default-hc[0] will be destroyed
+  - resource "google_compute_firewall" "default-hc" {
+      - creation_timestamp      = "2020-12-09T08:40:25.483-08:00" -> null
+      - destination_ranges      = [] -> null
+      - direction               = "INGRESS" -> null
+      - disabled                = false -> null
+      - id                      = "projects/frontier-268910/global/firewalls/ci-https-redirect-hc-0" -> null
+      - name                    = "ci-https-redirect-hc-0" -> null
+      - network                 = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/networks/default" -> null
+      - priority                = 1000 -> null
+      - project                 = "frontier-268910" -> null
+      - self_link               = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/firewalls/ci-https-redirect-hc-0" -> null
+      - source_ranges           = [
+          - "130.211.0.0/22",
+          - "35.191.0.0/16",
+        ] -> null
+      - source_service_accounts = [] -> null
+      - source_tags             = [] -> null
+      - target_service_accounts = [] -> null
+      - target_tags             = [
+          - "default",
+        ] -> null
+
+      - allow {
+          - ports    = [
+              - "80",
+            ] -> null
+          - protocol = "tcp" -> null
+        }
+    }
+
+  # module.gce-lb-http.google_compute_global_address.default[0] will be destroyed
+  - resource "google_compute_global_address" "default" {
+      - address            = "35.244.161.225" -> null
+      - address_type       = "EXTERNAL" -> null
+      - creation_timestamp = "2020-12-09T08:39:44.408-08:00" -> null
+      - id                 = "projects/frontier-268910/global/addresses/ci-https-redirect-address" -> null
+      - name               = "ci-https-redirect-address" -> null
+      - prefix_length      = 0 -> null
+      - project            = "frontier-268910" -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/addresses/ci-https-redirect-address" -> null
+    }
+
+  # module.gce-lb-http.google_compute_global_address.default_ipv6[0] will be destroyed
+  - resource "google_compute_global_address" "default_ipv6" {
+      - address            = "2600:1901:0:115e::" -> null
+      - address_type       = "EXTERNAL" -> null
+      - creation_timestamp = "2020-12-09T08:39:44.410-08:00" -> null
+      - id                 = "projects/frontier-268910/global/addresses/ci-https-redirect-ipv6-address" -> null
+      - ip_version         = "IPV6" -> null
+      - name               = "ci-https-redirect-ipv6-address" -> null
+      - prefix_length      = 0 -> null
+      - project            = "frontier-268910" -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/addresses/ci-https-redirect-ipv6-address" -> null
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.http[0] will be destroyed
+  - resource "google_compute_global_forwarding_rule" "http" {
+      - id                    = "projects/frontier-268910/global/forwardingRules/ci-https-redirect" -> null
+      - ip_address            = "35.244.161.225" -> null
+      - ip_protocol           = "TCP" -> null
+      - load_balancing_scheme = "EXTERNAL" -> null
+      - name                  = "ci-https-redirect" -> null
+      - port_range            = "80-80" -> null
+      - project               = "frontier-268910" -> null
+      - self_link             = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/forwardingRules/ci-https-redirect" -> null
+      - target                = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy" -> null
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0] will be destroyed
+  - resource "google_compute_global_forwarding_rule" "http_ipv6" {
+      - id                    = "projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-http" -> null
+      - ip_address            = "2600:1901:0:115e::" -> null
+      - ip_protocol           = "TCP" -> null
+      - load_balancing_scheme = "EXTERNAL" -> null
+      - name                  = "ci-https-redirect-ipv6-http" -> null
+      - port_range            = "80-80" -> null
+      - project               = "frontier-268910" -> null
+      - self_link             = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-http" -> null
+      - target                = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy" -> null
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.https[0] will be destroyed
+  - resource "google_compute_global_forwarding_rule" "https" {
+      - id                    = "projects/frontier-268910/global/forwardingRules/ci-https-redirect-https" -> null
+      - ip_address            = "35.244.161.225" -> null
+      - ip_protocol           = "TCP" -> null
+      - load_balancing_scheme = "EXTERNAL" -> null
+      - name                  = "ci-https-redirect-https" -> null
+      - port_range            = "443-443" -> null
+      - project               = "frontier-268910" -> null
+      - self_link             = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/forwardingRules/ci-https-redirect-https" -> null
+      - target                = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy" -> null
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0] will be destroyed
+  - resource "google_compute_global_forwarding_rule" "https_ipv6" {
+      - id                    = "projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-https" -> null
+      - ip_address            = "2600:1901:0:115e::" -> null
+      - ip_protocol           = "TCP" -> null
+      - load_balancing_scheme = "EXTERNAL" -> null
+      - name                  = "ci-https-redirect-ipv6-https" -> null
+      - port_range            = "443-443" -> null
+      - project               = "frontier-268910" -> null
+      - self_link             = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-https" -> null
+      - target                = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy" -> null
+    }
+
+  # module.gce-lb-http.google_compute_health_check.default["default"] will be destroyed
+  - resource "google_compute_health_check" "default" {
+      - check_interval_sec  = 5 -> null
+      - creation_timestamp  = "2020-12-09T08:40:25.487-08:00" -> null
+      - healthy_threshold   = 2 -> null
+      - id                  = "projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default" -> null
+      - name                = "ci-https-redirect-hc-default" -> null
+      - project             = "frontier-268910" -> null
+      - self_link           = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default" -> null
+      - timeout_sec         = 5 -> null
+      - type                = "HTTP" -> null
+      - unhealthy_threshold = 2 -> null
+
+      - http_health_check {
+          - port         = 80 -> null
+          - proxy_header = "NONE" -> null
+          - request_path = "/" -> null
+        }
+    }
+
+  # module.gce-lb-http.google_compute_target_http_proxy.default[0] will be destroyed
+  - resource "google_compute_target_http_proxy" "default" {
+      - creation_timestamp = "2020-12-09T08:40:42.126-08:00" -> null
+      - id                 = "projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy" -> null
+      - name               = "ci-https-redirect-http-proxy" -> null
+      - project            = "frontier-268910" -> null
+      - proxy_id           = 2702550221186744300 -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy" -> null
+      - url_map            = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/urlMaps/ci-https-redirect-https-redirect" -> null
+    }
+
+  # module.gce-lb-http.google_compute_target_https_proxy.default[0] will be destroyed
+  - resource "google_compute_target_https_proxy" "default" {
+      - creation_timestamp = "2020-12-09T08:40:41.923-08:00" -> null
+      - id                 = "projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy" -> null
+      - name               = "ci-https-redirect-https-proxy" -> null
+      - project            = "frontier-268910" -> null
+      - proxy_id           = 1605790336007618800 -> null
+      - quic_override      = "NONE" -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy" -> null
+      - ssl_certificates   = [
+          - "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/sslCertificates/default-cert",
+        ] -> null
+      - url_map            = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/urlMaps/ci-https-redirect-url-map" -> null
+    }
+
+  # module.gce-lb-http.google_compute_url_map.default[0] will be destroyed
+  - resource "google_compute_url_map" "default" {
+      - creation_timestamp = "2020-12-09T08:40:39.893-08:00" -> null
+      - default_service    = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default" -> null
+      - fingerprint        = "J-UlA9n1thk=" -> null
+      - id                 = "projects/frontier-268910/global/urlMaps/ci-https-redirect-url-map" -> null
+      - map_id             = 937528673546617100 -> null
+      - name               = "ci-https-redirect-url-map" -> null
+      - project            = "frontier-268910" -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/urlMaps/ci-https-redirect-url-map" -> null
+    }
+
+  # module.gce-lb-http.google_compute_url_map.https_redirect[0] will be destroyed
+  - resource "google_compute_url_map" "https_redirect" {
+      - creation_timestamp = "2020-12-09T08:39:44.305-08:00" -> null
+      - fingerprint        = "7i4l6XkEO2k=" -> null
+      - id                 = "projects/frontier-268910/global/urlMaps/ci-https-redirect-https-redirect" -> null
+      - map_id             = 68710626980873020 -> null
+      - name               = "ci-https-redirect-https-redirect" -> null
+      - project            = "frontier-268910" -> null
+      - self_link          = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/urlMaps/ci-https-redirect-https-redirect" -> null
+
+      - default_url_redirect {
+          - https_redirect         = true -> null
+          - redirect_response_code = "MOVED_PERMANENTLY_DEFAULT" -> null
+          - strip_query            = false -> null
+        }
+    }
+
+  # module.mig.google_compute_region_instance_group_manager.mig will be destroyed
+  - resource "google_compute_region_instance_group_manager" "mig" {
+      - base_instance_name        = "default" -> null
+      - distribution_policy_zones = [
+          - "asia-south1-a",
+          - "asia-south1-b",
+          - "asia-south1-c",
+        ] -> null
+      - fingerprint               = "a0ToJITafUM=" -> null
+      - id                        = "projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig" -> null
+      - instance_group            = "https://www.googleapis.com/compute/v1/projects/frontier-268910/regions/asia-south1/instanceGroups/default-mig" -> null
+      - name                      = "default-mig" -> null
+      - project                   = "frontier-268910" -> null
+      - region                    = "asia-south1" -> null
+      - self_link                 = "https://www.googleapis.com/compute/v1/projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig" -> null
+      - target_pools              = [] -> null
+      - target_size               = 2 -> null
+      - wait_for_instances        = false -> null
+
+      - named_port {
+          - name = "http" -> null
+          - port = 80 -> null
+        }
+
+      - update_policy {
+          - instance_redistribution_type = "PROACTIVE" -> null
+          - max_surge_fixed              = 3 -> null
+          - max_surge_percent            = 0 -> null
+          - max_unavailable_fixed        = 3 -> null
+          - max_unavailable_percent      = 0 -> null
+          - min_ready_sec                = 0 -> null
+          - minimal_action               = "REPLACE" -> null
+          - replacement_method           = "SUBSTITUTE" -> null
+          - type                         = "OPPORTUNISTIC" -> null
+        }
+
+      - version {
+          - instance_template = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/instanceTemplates/default-20201209163956526200000001" -> null
+          - name              = "default-mig-version-0" -> null
+        }
+    }
+
+  # module.mig_template.google_compute_instance_template.tpl will be destroyed
+  - resource "google_compute_instance_template" "tpl" {
+      - can_ip_forward          = false -> null
+      - id                      = "projects/frontier-268910/global/instanceTemplates/default-20201209163956526200000001" -> null
+      - machine_type            = "n1-standard-1" -> null
+      - metadata                = {} -> null
+      - metadata_fingerprint    = "7ivo7NQKRr0=" -> null
+      - metadata_startup_script = <<~EOT
+            #!/bin/bash -xe
+            
+            # introducing sleep so network interfaces and routes can get ready before fetching software
+            sleep 10
+            
+            RPM_INSTALL_ARGS="install -y httpd php php-common"
+            
+            if [ -f "/etc/redhat-release" ]; then
+              yum update -y || dnf update -y
+              yum $RPM_INSTALL_ARGS || dnf $RPM_INSTALL_ARGS
+            else
+              apt-get update
+              apt-get install -y apache2 libapache2-mod-php
+            fi
+            
+            cat > /var/www/html/index.php <<'EOF'
+            <?php
+            function metadata_value($value) {
+                $opts = array(
+                    "http" => array(
+                        "method" => "GET",
+                        "header" => "Metadata-Flavor: Google"
+                    )
+                );
+                $context = stream_context_create($opts);
+                $content = file_get_contents("http://metadata/computeMetadata/v1/$value", false, $context);
+                return $content;
+            }
+            if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == "http") {
+            		$redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            		header('HTTP/1.1 301 Moved Permanently');
+            		header('Location: ' . $redirect);
+            		exit();
+            }
+            ?>
+            
+            <!doctype html>
+            <html>
+            <head>
+            <!-- Compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+            
+            <!-- Compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+            <title>Frontend Web Server</title>
+            </head>
+            <body>
+            <div class="container">
+            <div class="row">
+            <div class="col s2">&nbsp;</div>
+            <div class="col s8">
+            
+            <img src="/assets/gcp-logo.svg"/>
+            
+            <div class="card blue">
+            <div class="card-content white-text">
+            <div class="card-title">Backend that serviced this request</div>
+            </div>
+            <div class="card-content white">
+            <table class="bordered">
+              <tbody>
+            	<tr>
+            	  <td>Name</td>
+            	  <td><?php printf(metadata_value("instance/name")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>ID</td>
+            	  <td><?php printf(metadata_value("instance/id")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Hostname</td>
+            	  <td><?php printf(metadata_value("instance/hostname")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Zone</td>
+            	  <td><?php printf(metadata_value("instance/zone")) ?></td>
+            	</tr>
+                <tr>
+            	  <td>Machine Type</td>
+            	  <td><?php printf(metadata_value("instance/machine-type")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Project</td>
+            	  <td><?php printf(metadata_value("project/project-id")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Internal IP</td>
+            	  <td><?php printf(metadata_value("instance/network-interfaces/0/ip")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>External IP</td>
+            	  <td><?php printf(metadata_value("instance/network-interfaces/0/access-configs/0/external-ip")) ?></td>
+            	</tr>
+              </tbody>
+            </table>
+            </div>
+            </div>
+            
+            <div class="card blue">
+            <div class="card-content white-text">
+            <div class="card-title">Proxy that handled this request</div>
+            </div>
+            <div class="card-content white">
+            <table class="bordered">
+              <tbody>
+            	<tr>
+            	  <td>Address</td>
+            	  <td><?php printf($_SERVER["HTTP_HOST"]); ?></td>
+            	</tr>
+              </tbody>
+            </table>
+            </div>
+            
+            </div>
+            </div>
+            <div class="col s2">&nbsp;</div>
+            </div>
+            </div>
+            </html>
+            EOF
+            
+            mv /var/www/html/index.html /var/www/html/index.html.old || echo "Old index doesn't exist"
+            
+            [[ -n "" ]] && mkdir -p /var/www/html/ && cp /var/www/html/index.php /var/www/html//index.php
+            
+            chkconfig httpd on || systemctl enable httpd || systemctl enable apache2
+            service httpd restart || systemctl restart httpd || systemctl restart apache2
+        EOT -> null
+      - name                    = "default-20201209163956526200000001" -> null
+      - name_prefix             = "default-" -> null
+      - project                 = "frontier-268910" -> null
+      - region                  = "asia-south1" -> null
+      - self_link               = "https://www.googleapis.com/compute/beta/projects/frontier-268910/global/instanceTemplates/default-20201209163956526200000001" -> null
+      - tags                    = [
+          - "default",
+          - "lb-https-redirect-router",
+        ] -> null
+
+      - disk {
+          - auto_delete  = true -> null
+          - boot         = true -> null
+          - device_name  = "persistent-disk-0" -> null
+          - disk_size_gb = 100 -> null
+          - disk_type    = "pd-standard" -> null
+          - interface    = "SCSI" -> null
+          - labels       = {} -> null
+          - mode         = "READ_WRITE" -> null
+          - source_image = "projects/centos-cloud/global/images/centos-8-v20201112" -> null
+          - type         = "PERSISTENT" -> null
+        }
+
+      - network_interface {
+          - name               = "nic0" -> null
+          - network            = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/networks/default" -> null
+          - subnetwork         = "https://www.googleapis.com/compute/v1/projects/frontier-268910/regions/asia-south1/subnetworks/default" -> null
+          - subnetwork_project = "frontier-268910" -> null
+        }
+
+      - scheduling {
+          - automatic_restart   = true -> null
+          - on_host_maintenance = "MIGRATE" -> null
+          - preemptible         = false -> null
+        }
+
+      - service_account {
+          - email  = "default" -> null
+          - scopes = [
+              - "https://www.googleapis.com/auth/cloud-platform",
+            ] -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 21 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: 
+module.cloud-nat.google_compute_router_nat.main: Destroying... [id=frontier-268910/asia-south1/lb-https-redirect-router/cloud-nat-lb-https-redirect]
+module.gce-lb-http.google_compute_global_forwarding_rule.https[0]: Destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-https]
+module.gce-lb-http.google_compute_global_forwarding_rule.http[0]: Destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect]
+module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0]: Destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-https]
+module.gce-lb-http.google_compute_firewall.default-hc[0]: Destroying... [id=projects/frontier-268910/global/firewalls/ci-https-redirect-hc-0]
+module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0]: Destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-http]
+module.gce-lb-http.google_compute_global_forwarding_rule.https[0]: Still destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-https, 10s elapsed]
+module.gce-lb-http.google_compute_global_forwarding_rule.http[0]: Still destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect, 10s elapsed]
+module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0]: Still destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-https, 10s elapsed]
+module.cloud-nat.google_compute_router_nat.main: Still destroying... [id=frontier-268910/asia-south1/lb-https-redirect-router/cloud-nat-lb-https-redirect, 10s elapsed]
+module.gce-lb-http.google_compute_firewall.default-hc[0]: Still destroying... [id=projects/frontier-268910/global/firewalls/ci-https-redirect-hc-0, 10s elapsed]
+module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0]: Still destroying... [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-http, 10s elapsed]
+module.gce-lb-http.google_compute_firewall.default-hc[0]: Destruction complete after 17s
+module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0]: Destruction complete after 17s
+module.gce-lb-http.google_compute_global_forwarding_rule.http[0]: Destruction complete after 17s
+module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0]: Destruction complete after 17s
+module.gce-lb-http.google_compute_target_http_proxy.default[0]: Destroying... [id=projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy]
+module.gce-lb-http.google_compute_global_address.default_ipv6[0]: Destroying... [id=projects/frontier-268910/global/addresses/ci-https-redirect-ipv6-address]
+module.gce-lb-http.google_compute_global_forwarding_rule.https[0]: Destruction complete after 17s
+module.gce-lb-http.google_compute_global_address.default[0]: Destroying... [id=projects/frontier-268910/global/addresses/ci-https-redirect-address]
+module.gce-lb-http.google_compute_target_https_proxy.default[0]: Destroying... [id=projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy]
+module.cloud-nat.google_compute_router_nat.main: Destruction complete after 18s
+module.cloud-nat.random_string.name_suffix: Destroying... [id=4ggyvi]
+module.cloud-nat.random_string.name_suffix: Destruction complete after 0s
+module.gce-lb-http.google_compute_global_address.default_ipv6[0]: Still destroying... [id=projects/frontier-268910/global/addresses/ci-https-redirect-ipv6-address, 10s elapsed]
+module.gce-lb-http.google_compute_target_http_proxy.default[0]: Still destroying... [id=projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy, 10s elapsed]
+module.gce-lb-http.google_compute_global_address.default[0]: Still destroying... [id=projects/frontier-268910/global/addresses/ci-https-redirect-address, 10s elapsed]
+module.gce-lb-http.google_compute_target_https_proxy.default[0]: Still destroying... [id=projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy, 10s elapsed]
+module.gce-lb-http.google_compute_global_address.default_ipv6[0]: Destruction complete after 12s
+module.gce-lb-http.google_compute_target_https_proxy.default[0]: Destruction complete after 12s
+google_compute_ssl_certificate.example: Destroying... [id=projects/frontier-268910/global/sslCertificates/default-cert]
+module.gce-lb-http.google_compute_target_http_proxy.default[0]: Destruction complete after 12s
+module.gce-lb-http.google_compute_url_map.https_redirect[0]: Destroying... [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-https-redirect]
+module.gce-lb-http.google_compute_url_map.default[0]: Destroying... [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-url-map]
+module.gce-lb-http.google_compute_global_address.default[0]: Destruction complete after 12s
+google_compute_ssl_certificate.example: Still destroying... [id=projects/frontier-268910/global/sslCertificates/default-cert, 10s elapsed]
+module.gce-lb-http.google_compute_url_map.https_redirect[0]: Still destroying... [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-https-redirect, 10s elapsed]
+module.gce-lb-http.google_compute_url_map.default[0]: Still destroying... [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-url-map, 10s elapsed]
+module.gce-lb-http.google_compute_url_map.default[0]: Destruction complete after 12s
+module.gce-lb-http.google_compute_backend_service.default["default"]: Destroying... [id=projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default]
+google_compute_ssl_certificate.example: Destruction complete after 12s
+module.gce-lb-http.google_compute_url_map.https_redirect[0]: Destruction complete after 12s
+tls_self_signed_cert.example: Destroying... [id=38137366328747142745847579692771248227]
+tls_self_signed_cert.example: Destruction complete after 0s
+tls_private_key.example: Destroying... [id=8e7b482feb77f05c8ca8fca6fac71c8ea2636efa]
+tls_private_key.example: Destruction complete after 0s
+module.gce-lb-http.google_compute_backend_service.default["default"]: Still destroying... [id=projects/frontier-268910/global/backend...ices/ci-https-redirect-backend-default, 10s elapsed]
+module.gce-lb-http.google_compute_backend_service.default["default"]: Destruction complete after 13s
+module.gce-lb-http.google_compute_health_check.default["default"]: Destroying... [id=projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default]
+module.gce-lb-http.google_compute_health_check.default["default"]: Still destroying... [id=projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default, 10s elapsed]
+module.gce-lb-http.google_compute_health_check.default["default"]: Destruction complete after 12s
+module.mig.google_compute_region_instance_group_manager.mig: Destroying... [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig]
+module.mig.google_compute_region_instance_group_manager.mig: Still destroying... [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig, 10s elapsed]
+module.mig.google_compute_region_instance_group_manager.mig: Still destroying... [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig, 20s elapsed]
+module.mig.google_compute_region_instance_group_manager.mig: Still destroying... [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig, 30s elapsed]
+module.mig.google_compute_region_instance_group_manager.mig: Still destroying... [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig, 40s elapsed]
+module.mig.google_compute_region_instance_group_manager.mig: Still destroying... [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig, 50s elapsed]
+module.mig.google_compute_region_instance_group_manager.mig: Destruction complete after 55s
+module.mig_template.google_compute_instance_template.tpl: Destroying... [id=projects/frontier-268910/global/instanceTemplates/default-20201209163956526200000001]
+module.mig_template.google_compute_instance_template.tpl: Still destroying... [id=projects/frontier-268910/global/instanc...tes/default-20201209163956526200000001, 10s elapsed]
+module.mig_template.google_compute_instance_template.tpl: Destruction complete after 12s
+google_compute_router.default: Destroying... [id=projects/frontier-268910/regions/asia-south1/routers/lb-https-redirect-router]
+google_compute_router.default: Still destroying... [id=projects/frontier-268910/regions/asia-south1/routers/lb-https-redirect-router, 10s elapsed]
+google_compute_router.default: Destruction complete after 12s
+
+Destroy complete! Resources: 21 destroyed.

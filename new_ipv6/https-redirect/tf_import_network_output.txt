@@ -1,0 +1,21 @@
+➜  https-redirect $ terraform import -var-file=test.tfvars google_compute_network.default projects/frontier-268910/global/networks/default
+google_compute_network.default: Importing from ID "projects/frontier-268910/global/networks/default"...
+google_compute_network.default: Import prepared!
+  Prepared google_compute_network for import
+google_compute_network.default: Refreshing state... [id=projects/frontier-268910/global/networks/default]
+
+Import successful!
+
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.
+
+➜  https-redirect $ terraform import -var-file=test.tfvars google_compute_subnetwork.default projects/frontier-268910/regions/asia-south1/subnetworks/default
+google_compute_subnetwork.default: Importing from ID "projects/frontier-268910/regions/asia-south1/subnetworks/default"...
+google_compute_subnetwork.default: Import prepared!
+  Prepared google_compute_subnetwork for import
+google_compute_subnetwork.default: Refreshing state... [id=projects/frontier-268910/regions/asia-south1/subnetworks/default]
+
+Import successful!
+
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.

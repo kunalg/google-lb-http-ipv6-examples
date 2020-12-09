@@ -1,0 +1,675 @@
+data.template_file.group-startup-script: Refreshing state...
+google_compute_network.default: Refreshing state... [id=projects/frontier-268910/global/networks/default]
+module.mig.data.google_compute_zones.available: Refreshing state...
+module.mig_template.data.google_compute_image.image_family: Refreshing state...
+module.mig_template.data.google_compute_image.image: Refreshing state...
+google_compute_subnetwork.default: Refreshing state... [id=projects/frontier-268910/regions/asia-south1/subnetworks/default]
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_compute_router.default will be created
+  + resource "google_compute_router" "default" {
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "lb-https-redirect-router"
+      + network            = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/networks/default"
+      + project            = (known after apply)
+      + region             = "asia-south1"
+      + self_link          = (known after apply)
+    }
+
+  # google_compute_ssl_certificate.example will be created
+  + resource "google_compute_ssl_certificate" "example" {
+      + certificate        = (sensitive value)
+      + certificate_id     = (known after apply)
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "default-cert"
+      + name_prefix        = (known after apply)
+      + private_key        = (sensitive value)
+      + project            = (known after apply)
+      + self_link          = (known after apply)
+    }
+
+  # tls_private_key.example will be created
+  + resource "tls_private_key" "example" {
+      + algorithm                  = "RSA"
+      + ecdsa_curve                = "P224"
+      + id                         = (known after apply)
+      + private_key_pem            = (sensitive value)
+      + public_key_fingerprint_md5 = (known after apply)
+      + public_key_openssh         = (known after apply)
+      + public_key_pem             = (known after apply)
+      + rsa_bits                   = 2048
+    }
+
+  # tls_self_signed_cert.example will be created
+  + resource "tls_self_signed_cert" "example" {
+      + allowed_uses          = [
+          + "key_encipherment",
+          + "digital_signature",
+          + "server_auth",
+        ]
+      + cert_pem              = (known after apply)
+      + dns_names             = [
+          + "example.com",
+        ]
+      + early_renewal_hours   = 3
+      + id                    = (known after apply)
+      + key_algorithm         = "RSA"
+      + private_key_pem       = (sensitive value)
+      + ready_for_renewal     = true
+      + validity_end_time     = (known after apply)
+      + validity_period_hours = 12
+      + validity_start_time   = (known after apply)
+
+      + subject {
+          + common_name  = "example.com"
+          + organization = "ACME Examples, Inc"
+        }
+    }
+
+  # module.cloud-nat.google_compute_router_nat.main will be created
+  + resource "google_compute_router_nat" "main" {
+      + icmp_idle_timeout_sec              = 30
+      + id                                 = (known after apply)
+      + min_ports_per_vm                   = 64
+      + name                               = "cloud-nat-lb-https-redirect"
+      + nat_ip_allocate_option             = "AUTO_ONLY"
+      + project                            = "frontier-268910"
+      + region                             = "asia-south1"
+      + router                             = "lb-https-redirect-router"
+      + source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+      + tcp_established_idle_timeout_sec   = 1200
+      + tcp_transitory_idle_timeout_sec    = 30
+      + udp_idle_timeout_sec               = 30
+    }
+
+  # module.cloud-nat.random_string.name_suffix will be created
+  + resource "random_string" "name_suffix" {
+      + id          = (known after apply)
+      + length      = 6
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+  # module.gce-lb-http.google_compute_backend_service.default["default"] will be created
+  + resource "google_compute_backend_service" "default" {
+      + affinity_cookie_ttl_sec         = (known after apply)
+      + connection_draining_timeout_sec = (known after apply)
+      + creation_timestamp              = (known after apply)
+      + custom_request_headers          = (known after apply)
+      + description                     = (known after apply)
+      + enable_cdn                      = (known after apply)
+      + fingerprint                     = (known after apply)
+      + health_checks                   = (known after apply)
+      + id                              = (known after apply)
+      + load_balancing_scheme           = "EXTERNAL"
+      + name                            = "ci-https-redirect-backend-default"
+      + port_name                       = "http"
+      + project                         = "frontier-268910"
+      + protocol                        = "HTTP"
+      + security_policy                 = (known after apply)
+      + self_link                       = (known after apply)
+      + session_affinity                = (known after apply)
+      + timeout_sec                     = (known after apply)
+
+      + backend {
+          + balancing_mode               = (known after apply)
+          + capacity_scaler              = (known after apply)
+          + description                  = (known after apply)
+          + group                        = (known after apply)
+          + max_connections              = (known after apply)
+          + max_connections_per_endpoint = (known after apply)
+          + max_connections_per_instance = (known after apply)
+          + max_rate                     = (known after apply)
+          + max_rate_per_endpoint        = (known after apply)
+          + max_rate_per_instance        = (known after apply)
+          + max_utilization              = (known after apply)
+        }
+
+      + cdn_policy {
+          + signed_url_cache_max_age_sec = (known after apply)
+
+          + cache_key_policy {
+              + include_host           = (known after apply)
+              + include_protocol       = (known after apply)
+              + include_query_string   = (known after apply)
+              + query_string_blacklist = (known after apply)
+              + query_string_whitelist = (known after apply)
+            }
+        }
+
+      + iap {
+          + oauth2_client_id            = (known after apply)
+          + oauth2_client_secret        = (sensitive value)
+          + oauth2_client_secret_sha256 = (sensitive value)
+        }
+
+      + log_config {
+          + enable      = (known after apply)
+          + sample_rate = (known after apply)
+        }
+    }
+
+  # module.gce-lb-http.google_compute_firewall.default-hc[0] will be created
+  + resource "google_compute_firewall" "default-hc" {
+      + creation_timestamp = (known after apply)
+      + destination_ranges = (known after apply)
+      + direction          = (known after apply)
+      + enable_logging     = (known after apply)
+      + id                 = (known after apply)
+      + name               = "ci-https-redirect-hc-0"
+      + network            = "default"
+      + priority           = 1000
+      + project            = "frontier-268910"
+      + self_link          = (known after apply)
+      + source_ranges      = [
+          + "130.211.0.0/22",
+          + "35.191.0.0/16",
+        ]
+      + target_tags        = [
+          + "default",
+        ]
+
+      + allow {
+          + ports    = [
+              + "80",
+            ]
+          + protocol = "tcp"
+        }
+    }
+
+  # module.gce-lb-http.google_compute_global_address.default[0] will be created
+  + resource "google_compute_global_address" "default" {
+      + address            = (known after apply)
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "ci-https-redirect-address"
+      + project            = "frontier-268910"
+      + self_link          = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_global_address.default_ipv6[0] will be created
+  + resource "google_compute_global_address" "default_ipv6" {
+      + address            = (known after apply)
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + ip_version         = "IPV6"
+      + name               = "ci-https-redirect-ipv6-address"
+      + project            = "frontier-268910"
+      + self_link          = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.http[0] will be created
+  + resource "google_compute_global_forwarding_rule" "http" {
+      + id                    = (known after apply)
+      + ip_address            = (known after apply)
+      + ip_protocol           = (known after apply)
+      + load_balancing_scheme = "EXTERNAL"
+      + name                  = "ci-https-redirect"
+      + port_range            = "80"
+      + project               = "frontier-268910"
+      + self_link             = (known after apply)
+      + target                = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0] will be created
+  + resource "google_compute_global_forwarding_rule" "http_ipv6" {
+      + id                    = (known after apply)
+      + ip_address            = (known after apply)
+      + ip_protocol           = (known after apply)
+      + load_balancing_scheme = "EXTERNAL"
+      + name                  = "ci-https-redirect-ipv6-http"
+      + port_range            = "80"
+      + project               = "frontier-268910"
+      + self_link             = (known after apply)
+      + target                = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.https[0] will be created
+  + resource "google_compute_global_forwarding_rule" "https" {
+      + id                    = (known after apply)
+      + ip_address            = (known after apply)
+      + ip_protocol           = (known after apply)
+      + load_balancing_scheme = "EXTERNAL"
+      + name                  = "ci-https-redirect-https"
+      + port_range            = "443"
+      + project               = "frontier-268910"
+      + self_link             = (known after apply)
+      + target                = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0] will be created
+  + resource "google_compute_global_forwarding_rule" "https_ipv6" {
+      + id                    = (known after apply)
+      + ip_address            = (known after apply)
+      + ip_protocol           = (known after apply)
+      + load_balancing_scheme = "EXTERNAL"
+      + name                  = "ci-https-redirect-ipv6-https"
+      + port_range            = "443"
+      + project               = "frontier-268910"
+      + self_link             = (known after apply)
+      + target                = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_health_check.default["default"] will be created
+  + resource "google_compute_health_check" "default" {
+      + check_interval_sec  = 5
+      + creation_timestamp  = (known after apply)
+      + healthy_threshold   = 2
+      + id                  = (known after apply)
+      + name                = "ci-https-redirect-hc-default"
+      + project             = "frontier-268910"
+      + self_link           = (known after apply)
+      + timeout_sec         = 5
+      + type                = (known after apply)
+      + unhealthy_threshold = 2
+
+      + http_health_check {
+          + port         = 80
+          + proxy_header = "NONE"
+          + request_path = "/"
+        }
+
+      + log_config {
+          + enable = false
+        }
+    }
+
+  # module.gce-lb-http.google_compute_target_http_proxy.default[0] will be created
+  + resource "google_compute_target_http_proxy" "default" {
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "ci-https-redirect-http-proxy"
+      + project            = "frontier-268910"
+      + proxy_id           = (known after apply)
+      + self_link          = (known after apply)
+      + url_map            = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_target_https_proxy.default[0] will be created
+  + resource "google_compute_target_https_proxy" "default" {
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "ci-https-redirect-https-proxy"
+      + project            = "frontier-268910"
+      + proxy_id           = (known after apply)
+      + quic_override      = "NONE"
+      + self_link          = (known after apply)
+      + ssl_certificates   = (known after apply)
+      + url_map            = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_url_map.default[0] will be created
+  + resource "google_compute_url_map" "default" {
+      + creation_timestamp = (known after apply)
+      + default_service    = (known after apply)
+      + fingerprint        = (known after apply)
+      + id                 = (known after apply)
+      + map_id             = (known after apply)
+      + name               = "ci-https-redirect-url-map"
+      + project            = "frontier-268910"
+      + self_link          = (known after apply)
+    }
+
+  # module.gce-lb-http.google_compute_url_map.https_redirect[0] will be created
+  + resource "google_compute_url_map" "https_redirect" {
+      + creation_timestamp = (known after apply)
+      + fingerprint        = (known after apply)
+      + id                 = (known after apply)
+      + map_id             = (known after apply)
+      + name               = "ci-https-redirect-https-redirect"
+      + project            = "frontier-268910"
+      + self_link          = (known after apply)
+
+      + default_url_redirect {
+          + https_redirect         = true
+          + redirect_response_code = "MOVED_PERMANENTLY_DEFAULT"
+          + strip_query            = false
+        }
+    }
+
+  # module.mig.google_compute_region_instance_group_manager.mig will be created
+  + resource "google_compute_region_instance_group_manager" "mig" {
+      + base_instance_name        = "default"
+      + distribution_policy_zones = (known after apply)
+      + fingerprint               = (known after apply)
+      + id                        = (known after apply)
+      + instance_group            = (known after apply)
+      + name                      = "default-mig"
+      + project                   = (known after apply)
+      + region                    = "asia-south1"
+      + self_link                 = (known after apply)
+      + target_size               = 2
+      + wait_for_instances        = false
+
+      + auto_healing_policies {
+          + initial_delay_sec = 0
+        }
+
+      + named_port {
+          + name = "http"
+          + port = 80
+        }
+
+      + update_policy {
+          + instance_redistribution_type = (known after apply)
+          + max_surge_fixed              = (known after apply)
+          + max_surge_percent            = (known after apply)
+          + max_unavailable_fixed        = (known after apply)
+          + max_unavailable_percent      = (known after apply)
+          + min_ready_sec                = (known after apply)
+          + minimal_action               = (known after apply)
+          + replacement_method           = (known after apply)
+          + type                         = (known after apply)
+        }
+
+      + version {
+          + instance_template = (known after apply)
+          + name              = "default-mig-version-0"
+        }
+    }
+
+  # module.mig_template.google_compute_instance_template.tpl will be created
+  + resource "google_compute_instance_template" "tpl" {
+      + can_ip_forward          = false
+      + id                      = (known after apply)
+      + machine_type            = "n1-standard-1"
+      + metadata_fingerprint    = (known after apply)
+      + metadata_startup_script = <<~EOT
+            #!/bin/bash -xe
+            
+            # introducing sleep so network interfaces and routes can get ready before fetching software
+            sleep 10
+            
+            RPM_INSTALL_ARGS="install -y httpd php php-common"
+            
+            if [ -f "/etc/redhat-release" ]; then
+              yum update -y || dnf update -y
+              yum $RPM_INSTALL_ARGS || dnf $RPM_INSTALL_ARGS
+            else
+              apt-get update
+              apt-get install -y apache2 libapache2-mod-php
+            fi
+            
+            cat > /var/www/html/index.php <<'EOF'
+            <?php
+            function metadata_value($value) {
+                $opts = array(
+                    "http" => array(
+                        "method" => "GET",
+                        "header" => "Metadata-Flavor: Google"
+                    )
+                );
+                $context = stream_context_create($opts);
+                $content = file_get_contents("http://metadata/computeMetadata/v1/$value", false, $context);
+                return $content;
+            }
+            if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == "http") {
+            		$redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            		header('HTTP/1.1 301 Moved Permanently');
+            		header('Location: ' . $redirect);
+            		exit();
+            }
+            ?>
+            
+            <!doctype html>
+            <html>
+            <head>
+            <!-- Compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+            
+            <!-- Compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+            <title>Frontend Web Server</title>
+            </head>
+            <body>
+            <div class="container">
+            <div class="row">
+            <div class="col s2">&nbsp;</div>
+            <div class="col s8">
+            
+            <img src="/assets/gcp-logo.svg"/>
+            
+            <div class="card blue">
+            <div class="card-content white-text">
+            <div class="card-title">Backend that serviced this request</div>
+            </div>
+            <div class="card-content white">
+            <table class="bordered">
+              <tbody>
+            	<tr>
+            	  <td>Name</td>
+            	  <td><?php printf(metadata_value("instance/name")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>ID</td>
+            	  <td><?php printf(metadata_value("instance/id")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Hostname</td>
+            	  <td><?php printf(metadata_value("instance/hostname")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Zone</td>
+            	  <td><?php printf(metadata_value("instance/zone")) ?></td>
+            	</tr>
+                <tr>
+            	  <td>Machine Type</td>
+            	  <td><?php printf(metadata_value("instance/machine-type")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Project</td>
+            	  <td><?php printf(metadata_value("project/project-id")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>Internal IP</td>
+            	  <td><?php printf(metadata_value("instance/network-interfaces/0/ip")) ?></td>
+            	</tr>
+            	<tr>
+            	  <td>External IP</td>
+            	  <td><?php printf(metadata_value("instance/network-interfaces/0/access-configs/0/external-ip")) ?></td>
+            	</tr>
+              </tbody>
+            </table>
+            </div>
+            </div>
+            
+            <div class="card blue">
+            <div class="card-content white-text">
+            <div class="card-title">Proxy that handled this request</div>
+            </div>
+            <div class="card-content white">
+            <table class="bordered">
+              <tbody>
+            	<tr>
+            	  <td>Address</td>
+            	  <td><?php printf($_SERVER["HTTP_HOST"]); ?></td>
+            	</tr>
+              </tbody>
+            </table>
+            </div>
+            
+            </div>
+            </div>
+            <div class="col s2">&nbsp;</div>
+            </div>
+            </div>
+            </html>
+            EOF
+            
+            mv /var/www/html/index.html /var/www/html/index.html.old || echo "Old index doesn't exist"
+            
+            [[ -n "" ]] && mkdir -p /var/www/html/ && cp /var/www/html/index.php /var/www/html//index.php
+            
+            chkconfig httpd on || systemctl enable httpd || systemctl enable apache2
+            service httpd restart || systemctl restart httpd || systemctl restart apache2
+        EOT
+      + name                    = (known after apply)
+      + name_prefix             = "default-"
+      + project                 = (known after apply)
+      + region                  = (known after apply)
+      + self_link               = (known after apply)
+      + tags                    = [
+          + "default",
+          + "lb-https-redirect-router",
+        ]
+      + tags_fingerprint        = (known after apply)
+
+      + disk {
+          + auto_delete  = true
+          + boot         = true
+          + device_name  = (known after apply)
+          + disk_size_gb = 100
+          + disk_type    = "pd-standard"
+          + interface    = (known after apply)
+          + mode         = (known after apply)
+          + source_image = "https://www.googleapis.com/compute/v1/projects/centos-cloud/global/images/centos-8-v20201112"
+          + type         = (known after apply)
+        }
+
+      + network_interface {
+          + name               = (known after apply)
+          + network            = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/networks/default"
+          + subnetwork         = "https://www.googleapis.com/compute/v1/projects/frontier-268910/regions/asia-south1/subnetworks/default"
+          + subnetwork_project = (known after apply)
+        }
+
+      + scheduling {
+          + automatic_restart   = true
+          + on_host_maintenance = (known after apply)
+          + preemptible         = false
+        }
+
+      + service_account {
+          + email  = (known after apply)
+          + scopes = [
+              + "https://www.googleapis.com/auth/cloud-platform",
+            ]
+        }
+    }
+
+Plan: 21 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: 
+tls_private_key.example: Creating...
+module.cloud-nat.random_string.name_suffix: Creating...
+module.cloud-nat.random_string.name_suffix: Creation complete after 0s [id=4ggyvi]
+module.gce-lb-http.google_compute_global_address.default[0]: Creating...
+module.gce-lb-http.google_compute_global_address.default_ipv6[0]: Creating...
+google_compute_router.default: Creating...
+module.gce-lb-http.google_compute_url_map.https_redirect[0]: Creating...
+tls_private_key.example: Creation complete after 1s [id=8e7b482feb77f05c8ca8fca6fac71c8ea2636efa]
+tls_self_signed_cert.example: Creating...
+tls_self_signed_cert.example: Creation complete after 0s [id=38137366328747142745847579692771248227]
+google_compute_ssl_certificate.example: Creating...
+module.gce-lb-http.google_compute_global_address.default[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_global_address.default_ipv6[0]: Still creating... [10s elapsed]
+google_compute_router.default: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_url_map.https_redirect[0]: Still creating... [10s elapsed]
+google_compute_ssl_certificate.example: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_url_map.https_redirect[0]: Creation complete after 13s [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-https-redirect]
+google_compute_ssl_certificate.example: Creation complete after 13s [id=projects/frontier-268910/global/sslCertificates/default-cert]
+module.gce-lb-http.google_compute_global_address.default[0]: Creation complete after 14s [id=projects/frontier-268910/global/addresses/ci-https-redirect-address]
+module.gce-lb-http.google_compute_global_address.default_ipv6[0]: Creation complete after 14s [id=projects/frontier-268910/global/addresses/ci-https-redirect-ipv6-address]
+google_compute_router.default: Creation complete after 14s [id=projects/frontier-268910/regions/asia-south1/routers/lb-https-redirect-router]
+module.cloud-nat.google_compute_router_nat.main: Creating...
+module.mig_template.google_compute_instance_template.tpl: Creating...
+module.mig_template.google_compute_instance_template.tpl: Creation complete after 2s [id=projects/frontier-268910/global/instanceTemplates/default-20201209163956526200000001]
+module.mig.google_compute_region_instance_group_manager.mig: Creating...
+module.cloud-nat.google_compute_router_nat.main: Still creating... [10s elapsed]
+module.mig.google_compute_region_instance_group_manager.mig: Still creating... [10s elapsed]
+module.cloud-nat.google_compute_router_nat.main: Still creating... [20s elapsed]
+module.mig.google_compute_region_instance_group_manager.mig: Still creating... [20s elapsed]
+module.cloud-nat.google_compute_router_nat.main: Creation complete after 24s [id=frontier-268910/asia-south1/lb-https-redirect-router/cloud-nat-lb-https-redirect]
+module.mig.google_compute_region_instance_group_manager.mig: Creation complete after 26s [id=projects/frontier-268910/regions/asia-south1/instanceGroupManagers/default-mig]
+module.gce-lb-http.google_compute_firewall.default-hc[0]: Creating...
+module.gce-lb-http.google_compute_health_check.default["default"]: Creating...
+module.gce-lb-http.google_compute_health_check.default["default"]: Creation complete after 2s [id=projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default]
+module.gce-lb-http.google_compute_backend_service.default["default"]: Creating...
+module.gce-lb-http.google_compute_firewall.default-hc[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_backend_service.default["default"]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_firewall.default-hc[0]: Creation complete after 12s [id=projects/frontier-268910/global/firewalls/ci-https-redirect-hc-0]
+module.gce-lb-http.google_compute_backend_service.default["default"]: Creation complete after 12s [id=projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default]
+module.gce-lb-http.google_compute_url_map.default[0]: Creating...
+module.gce-lb-http.google_compute_url_map.default[0]: Creation complete after 2s [id=projects/frontier-268910/global/urlMaps/ci-https-redirect-url-map]
+module.gce-lb-http.google_compute_target_https_proxy.default[0]: Creating...
+module.gce-lb-http.google_compute_target_http_proxy.default[0]: Creating...
+module.gce-lb-http.google_compute_target_https_proxy.default[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_target_http_proxy.default[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_target_https_proxy.default[0]: Creation complete after 13s [id=projects/frontier-268910/global/targetHttpsProxies/ci-https-redirect-https-proxy]
+module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0]: Creating...
+module.gce-lb-http.google_compute_global_forwarding_rule.https[0]: Creating...
+module.gce-lb-http.google_compute_target_http_proxy.default[0]: Creation complete after 13s [id=projects/frontier-268910/global/targetHttpProxies/ci-https-redirect-http-proxy]
+module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0]: Creating...
+module.gce-lb-http.google_compute_global_forwarding_rule.http[0]: Creating...
+module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_global_forwarding_rule.https[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_global_forwarding_rule.http[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0]: Still creating... [10s elapsed]
+module.gce-lb-http.google_compute_global_forwarding_rule.https[0]: Creation complete after 12s [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-https]
+module.gce-lb-http.google_compute_global_forwarding_rule.https_ipv6[0]: Creation complete after 13s [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-https]
+module.gce-lb-http.google_compute_global_forwarding_rule.http_ipv6[0]: Creation complete after 13s [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect-ipv6-http]
+module.gce-lb-http.google_compute_global_forwarding_rule.http[0]: Creation complete after 14s [id=projects/frontier-268910/global/forwardingRules/ci-https-redirect]
+
+Apply complete! Resources: 21 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+backend_services = {
+  "default" = {
+    "affinity_cookie_ttl_sec" = 0
+    "backend" = [
+      {
+        "balancing_mode" = "UTILIZATION"
+        "capacity_scaler" = 1
+        "description" = ""
+        "group" = "https://www.googleapis.com/compute/v1/projects/frontier-268910/regions/asia-south1/instanceGroups/default-mig"
+        "max_utilization" = 0.8
+      },
+    ]
+    "cdn_policy" = []
+    "circuit_breakers" = []
+    "connection_draining_timeout_sec" = 300
+    "consistent_hash" = []
+    "creation_timestamp" = "2020-12-09T08:40:27.499-08:00"
+    "description" = ""
+    "enable_cdn" = false
+    "fingerprint" = "hFdtQ3OrdzI="
+    "health_checks" = [
+      "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/healthChecks/ci-https-redirect-hc-default",
+    ]
+    "iap" = []
+    "id" = "projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default"
+    "load_balancing_scheme" = "EXTERNAL"
+    "locality_lb_policy" = ""
+    "log_config" = []
+    "name" = "ci-https-redirect-backend-default"
+    "outlier_detection" = []
+    "port_name" = "http"
+    "project" = "frontier-268910"
+    "protocol" = "HTTP"
+    "security_policy" = ""
+    "self_link" = "https://www.googleapis.com/compute/v1/projects/frontier-268910/global/backendServices/ci-https-redirect-backend-default"
+    "session_affinity" = "NONE"
+    "timeout_sec" = 10
+  }
+}
+load-balancer-ip = 35.244.161.225
+load-balancer-ipv6 = 2600:1901:0:115e::

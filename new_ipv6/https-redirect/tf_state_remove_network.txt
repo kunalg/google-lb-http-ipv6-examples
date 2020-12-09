@@ -1,0 +1,4 @@
+➜  https-redirect $ terraform state rm google_compute_network.default google_compute_subnetwork.default
+Removed google_compute_network.default
+Removed google_compute_subnetwork.default
+Successfully removed 2 resource instance(s).

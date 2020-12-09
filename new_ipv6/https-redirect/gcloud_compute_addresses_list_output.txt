@@ -1,0 +1,15 @@
+----- during "terraform apply" run -----
+➜  terraform-google-lb-http git:(issue-112-dual-stack) $ gcloud compute addresses list
+NAME                                    ADDRESS/RANGE       TYPE      PURPOSE   NETWORK  REGION           SUBNET  STATUS
+ci-https-redirect-address               35.244.161.225      EXTERNAL                                              RESERVED
+ci-https-redirect-ipv6-address          2600:1901:0:115e::  EXTERNAL                                              RESERVED
+gcdn-dual-stack-test-addr               2600:1901:0:d4e7::  EXTERNAL                                              RESERVED
+
+
+
+----- after "terraform apply" completed -----
+➜  terraform-google-lb-http git:(issue-112-dual-stack) $ gcloud compute addresses list
+NAME                                    ADDRESS/RANGE       TYPE      PURPOSE   NETWORK  REGION           SUBNET  STATUS
+ci-https-redirect-address               35.244.161.225      EXTERNAL                                              IN_USE
+ci-https-redirect-ipv6-address          2600:1901:0:115e::  EXTERNAL                                              IN_USE
+gcdn-dual-stack-test-addr               2600:1901:0:d4e7::  EXTERNAL                                              RESERVED
